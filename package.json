@@ -1,0 +1,29 @@
+{
+  "name": "pontarius",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "strophe.js": "^1.2.13"
+  },
+  "devDependencies": {
+    "eslint": "^3.16.1",
+    "eslint-config-google": "^0.7.1",
+    "eslint-plugin-import": "^2.2.0",
+    "mocha": "^3.2.0"
+  },
+    "scripts": {
+        "build": "webpack index.js dist/bundle.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pontarius/pontarius.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pontarius/pontarius/issues"
+  },
+  "homepage": "https://github.com/pontarius/pontarius#readme"
+}
