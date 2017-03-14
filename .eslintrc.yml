@@ -1,9 +1,11 @@
 env:
-  node: true
-parseOptions:
+  es6: true
+  browser: true
+parserOptions:
   ecmaVersion: 6
   sourceType: module
-# extends: 'eslint:recommended'
+settings:
+  import/resolver: node
 extends:
   - eslint:recommended
   - plugin:import/errors
@@ -13,9 +15,14 @@ rules:
   indent:
     - error
     - 2
+    - ObjectExpression: 'first'
   linebreak-style:
     - error
     - unix
+  brace-style:
+    - error
+    - 1tbs
+    - allowSingleLine: true
   quotes:
     - error
     - single
@@ -29,5 +36,6 @@ rules:
   comma-style:
     - error
     - last
-  no-var:
-    - off
+  comma-dangle:
+    - error
+    - never
