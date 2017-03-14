@@ -1,7 +1,7 @@
 'use strict';
 
 import {Strophe, $pres, $msg} from 'strophe.js';
-import {} from 'strophe.roster';
+import {} from './strophe.roster';
 
 
 /*
@@ -84,7 +84,6 @@ export default function createPontarius({server, jid, password},
     connection.roster.unauthorize(address);
   };
 
-  log("Trying to connect");
   connection.connect(jid, password, _statusCallback);
 
   let getRoster = function() {

@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "jquery": "^3.1.1",
     "strophe.js": "^1.2.13",
     "strophejs-plugins": "0.0.7"
   },
@@ -21,7 +22,8 @@
     "mocha": "^3.2.0",
     "npm": "^4.4.1",
     "rimraf": "^2.6.1",
-    "tern": "^0.21.0"
+    "tern": "^0.21.0",
+    "webpack": "^2.2.1"
   },
   "scripts": {
     "clean": "rimraf dist",

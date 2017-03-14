@@ -1,7 +1,7 @@
 'use strict';
 
 import $ from 'jquery';
-import createPontarius from 'pontarius';
+import createPontarius from './pontarius';
 
 import {Strophe, $msg} from 'strophe.js';
 
@@ -9,7 +9,7 @@ const server = 'http://localhost:8000/http-bind/';
 const username = 'user1@pontarius';
 const password = 'pwd1';
 
-const credentials = {server, jid:username, password};
+const credentials = {server, jid: username, password};
 
 const them = 'user2@pontarius';
 
@@ -55,7 +55,6 @@ const callbacks = {
 
 
 $(document).ready( function() {
-  log($msg == undefined);
   let pontarius = createPontarius(credentials, callbacks);
   // strophe.log = function(level, msg) { log(level + ' ' + msg); };
 });
