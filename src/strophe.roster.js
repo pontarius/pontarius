@@ -345,34 +345,30 @@ Strophe.addConnectionPlugin('roster',
         var from = Strophe.getBareJidFromJid(jid);
         var item = this.findItem(from);
         var type = presence.getAttribute('type');
-        // not in roster
-        if (!item)
-        {
-            // if 'friend request' presence
-            if (type === 'subscribe') {
-                this._call_backs_request(from);
-            }
-            return true;
+        if (type === 'subscribe') {
+          this._call_backs_request(from);
+          return true;
         }
-        if (type == 'unavailable')
-        {
+        if(item){
+          if (type == 'unavailable')
+          {
             delete item.resources[Strophe.getResourceFromJid(jid)];
-        }
-        else if (!type)
-        {
+          }
+          else if (!type)
+          {
             // TODO: add timestamp
             item.resources[Strophe.getResourceFromJid(jid)] = {
-                show     : (presence.getElementsByTagName('show').length !== 0) ? Strophe.getText(presence.getElementsByTagName('show')[0]) : "",
-                status   : (presence.getElementsByTagName('status').length !== 0) ? Strophe.getText(presence.getElementsByTagName('status')[0]) : "",
-                priority : (presence.getElementsByTagName('priority').length !== 0) ? Strophe.getText(presence.getElementsByTagName('priority')[0]) : ""
+              show     : (presence.getElementsByTagName('show').length !== 0) ? Strophe.getText(presence.getElementsByTagName('show')[0]) : "",
+              status   : (presence.getElementsByTagName('status').length !== 0) ? Strophe.getText(presence.getElementsByTagName('status')[0]) : "",
+              priority : (presence.getElementsByTagName('priority').length !== 0) ? Strophe.getText(presence.getElementsByTagName('priority')[0]) : ""
             };
-        }
-        else
-        {
+          } else
+          {
             // Stanza is not a presence notification. (It's probably a subscription type stanza.)
             return true;
-        }
-        this._call_backs(this.items, item);
+          }
+          this._call_backs(this.items, item);
+        } // if(item)
         return true;
     },
     /** PrivateFunction: _call_backs_request
