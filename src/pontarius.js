@@ -18,7 +18,6 @@ Roster Item:
 
 const skip = () => {return;};
 
-
 /**
  *
  * @param {} test
@@ -84,22 +83,45 @@ export default function createPontarius({server, jid, password},
     connection.roster.unauthorize(address);
   };
 
-  connection.connect(jid, password, _statusCallback);
-
   let getRoster = function() {
     return items;
   };
 
-  let sendMessage = function(recip, message) {
+  let sendMessage = function(type, recipient, contents ){
+    let msg = $msg({ to: recipient })
+               .c(type, {ns: pontariusNS})
+               .t(contents);
+    connection.send(msg.tree());
+  };
+
+  let onMessage = function(type, callback){
+    let handler = function(message){
+      let nodes = message.getElementsByTagName(type);
+      if (nodes.length > 0){
+        callback(nodes[0].textContent);
+      }
+      return true;
+    };
+    connection.addHandler(handler, undefined, 'message');
+  };
+
+  let sendIM = function(recip, message) {
     let msg = $msg({ to: recip,
                      type: 'chat'
                    }. c('body').t(msg)
                   );
   };
 
+  let connect = function() {
+    connection.connect(jid, password, _statusCallback);
+  };
+
   return {
+    connect,
     getRoster,
     sendMessage,
+    onMessage,
+    sendIM,
     authorize,
     unauthorized
   };

@@ -39,3 +39,5 @@ rules:
   comma-dangle:
     - error
     - never
+  arrow-parens:
+    - off

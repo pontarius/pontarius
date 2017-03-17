@@ -42,7 +42,6 @@ function describeStatus(status) {
   }
 }
 
-
 const callbacks = {
   statusCallback: function(status) {
     log('status: ' + describeStatus(status));
@@ -50,11 +49,17 @@ const callbacks = {
   messageCallback: function(message) {
     log('message: '+ message);
   },
+  subscribeCallback: function(connection, from) {
+    log('Got subscription request from ' + from);
+    connection.roster.authorize(from);
+  },
   log: log
 };
 
 
 $(document).ready( function() {
   let pontarius = createPontarius(credentials, callbacks);
+  pontarius.onMessage('body', msg => log('message ' + msg));
+  pontarius.connect();
   // strophe.log = function(level, msg) { log(level + ' ' + msg); };
 });
